@@ -20,8 +20,15 @@ $router->get('/', function () use ($router) {
 });
 
 
-$router->get('/mahasiswa','MahasiswaController@index');
-$router->post('/mahasiswa','MahasiswaController@store');
-$router->get('/mahasiswa/{id}','MahasiswaController@show');
-$router->put('/mahasiswa/{id}','MahasiswaController@update');
-$router->delete('/mahasiswa/{id}','MahasiswaController@destroy');
+$router->get('/mahasiswa', 'MahasiswaController@index');
+$router->post('/mahasiswa', 'MahasiswaController@store');
+$router->get('/mahasiswa/{id}', 'MahasiswaController@show');
+$router->put('/mahasiswa/{id}', 'MahasiswaController@update');
+$router->delete('/mahasiswa/{id}', 'MahasiswaController@destroy');
+
+//Gawat Darurat
+$router->get('/gawatdarurat', 'GawatDaruratController@index');
+$router->post('/gawatdarurat', 'GawatDaruratController@storeGawatDarurat');
+$router->patch('/gawatdarurat/penilaian/{id}', 'GawatDaruratController@storeGawatDaruratPenilaian');
+$router->get('/gawatdarurat/{id}', 'GawatDaruratController@readGawatDaruratById');
+$router->delete('/gawatdarurat/{id}', 'GawatDaruratController@deleteGawatDarurat');
