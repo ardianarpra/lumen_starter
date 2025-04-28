@@ -25,3 +25,11 @@ $router->post('/mahasiswa','MahasiswaController@store');
 $router->get('/mahasiswa/{id}','MahasiswaController@show');
 $router->put('/mahasiswa/{id}','MahasiswaController@update');
 $router->delete('/mahasiswa/{id}','MahasiswaController@destroy');
+
+
+$router->post('/register', 'StaffController@register');
+$router->post('/login', 'StaffController@login');
+
+$router->group(['middleware' => 'jwt.auth'], function () use ($router) {
+    $router->get('/me', 'StaffController@me');
+});
