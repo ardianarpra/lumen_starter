@@ -32,3 +32,11 @@ $router->post('/gawatdarurat', 'GawatDaruratController@storeGawatDarurat');
 $router->patch('/gawatdarurat/penilaian/{id}', 'GawatDaruratController@storeGawatDaruratPenilaian');
 $router->get('/gawatdarurat/{id}', 'GawatDaruratController@readGawatDaruratById');
 $router->delete('/gawatdarurat/{id}', 'GawatDaruratController@deleteGawatDarurat');
+
+
+$router->post('/register', 'StaffController@register');
+$router->post('/login', 'StaffController@login');
+
+$router->group(['middleware' => 'jwt.auth'], function () use ($router) {
+    $router->get('/me', 'StaffController@me');
+});

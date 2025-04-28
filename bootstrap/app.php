@@ -6,7 +6,8 @@ require_once __DIR__ . '/../vendor/autoload.php';
     dirname(__DIR__)
 ))->bootstrap();
 
-date_default_timezone_set(env('APP_TIMEZONE', 'UTC'));
+// date_default_timezone_set(env('APP_TIMEZONE', 'UTC'));
+date_default_timezone_set('Asia/Makassar');
 
 /*
 |--------------------------------------------------------------------------
@@ -86,6 +87,9 @@ $app->singleton(
 $app->configure('app');
 $app->configure('jwt');
 
+$app->configure('logging');
+$app->register(Illuminate\Log\LogServiceProvider::class);
+
 /*
 |--------------------------------------------------------------------------
 | Register Middleware
@@ -103,6 +107,7 @@ $app->configure('jwt');
 
 $app->routeMiddleware([
     'auth' => App\Http\Middleware\Authenticate::class,
+    'jwt.auth' => App\Http\Middleware\JwtFirebaseMiddleware::class,
 ]);
 
 /*
@@ -119,8 +124,6 @@ $app->routeMiddleware([
 // $app->register(App\Providers\AppServiceProvider::class);
 $app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
-
-$app->register(\Tymon\JWTAuth\Providers\LumenServiceProvider::class);
 
 /*
 |--------------------------------------------------------------------------
