@@ -33,6 +33,13 @@ $router->patch('/gawatdarurat/penilaian/{id}', 'GawatDaruratController@storeGawa
 $router->get('/gawatdarurat/{id}', 'GawatDaruratController@readGawatDaruratById');
 $router->delete('/gawatdarurat/{id}', 'GawatDaruratController@deleteGawatDarurat');
 
+//Berita
+$router->get('/berita', 'BeritaController@index');
+$router->post('/berita', 'BeritaController@storeBerita');
+$router->patch('/berita/like/{beritaId}/{userId}', 'BeritaController@storeLikeBerita');
+$router->get('/berita/{id}', 'BeritaController@readBeritaById');
+$router->put('/berita/{id}', 'BeritaController@updateBerita');
+$router->delete('/berita/{id}', 'BeritaController@deleteBerita');
 
 $router->post('/register', 'StaffController@register');
 $router->post('/login', 'StaffController@login');
